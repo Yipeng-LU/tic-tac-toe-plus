@@ -1,0 +1,90 @@
+body{
+	margin:0;
+}
+.board{
+	width:100vw;
+	height:100vh;
+	display:grid;
+	justify-content: center;
+	align-content: center;
+	grid-template-columns: repeat(15,auto);
+	justify-items:center;
+	align-items: center
+}
+.cell{
+	width:40px;
+	height:40px;
+	border:1px solid black;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	position:relative;
+	cursor: pointer;
+}
+.cell.x,.cell.circle{
+	cursor:not-allowed;
+}
+.cell.x::before,.cell.x::after,.board.x .cell:not(.x):not(.circle):hover::before,.board.x .cell:not(.x):not(.circle):hover::after{
+	position:absolute;
+	content:'';
+	width:5px;
+	height:36px;
+	background:black;
+}
+.cell.x::before,.board.x .cell:not(.x):not(.circle):hover::before{
+	transform:rotate(45deg);
+}
+.cell.x::after,.board.x .cell:not(.x):not(.circle):hover::after{
+	transform:rotate(-45deg);
+}
+.board.x .cell:not(.x):not(.circle):hover::before,.board.x .cell:not(.x):not(.circle):hover::after{
+	background:lightgray;
+}
+.cell.circle::before,.cell.circle::after,.board.circle .cell:not(.x):not(.circle):hover::before,.board.circle .cell:not(.x):not(.circle):hover::after{
+	position:absolute;
+	content:'';
+	border-radius: 50%;
+}
+.cell.circle::before,.board.circle .cell:not(.x):not(.circle):hover::before{
+	width:36px;
+	height:36px;
+	background:black;
+}
+.cell.circle::after,.board.circle .cell:not(.x):not(.circle):hover::after{
+	width:24px;
+	height:24px;
+	background:white;
+}
+.board.circle .cell:not(.x):not(.circle):hover::before{
+	background:lightgray;
+}
+.winning-message{
+	position:fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background:rgba(0,0,0,0.7);
+	display:none;
+	justify-content: center;
+	align-items: center;
+	color:white;
+	font-size:5rem;
+	flex-direction: column;
+}
+.winning-message a{
+	font-size:3rem;
+	background:rgba(0,0,0,0.8);
+	border: 1px solid black;
+	padding:0.25em 0.5em;
+	cursor:pointer;
+	border-radius: 10px;
+	color:white;
+	text-decoration: none;
+}
+.winning-message a:hover{
+	border-color: white;
+}
+.winning-message.show{
+	display:flex;
+}
